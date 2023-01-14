@@ -17,4 +17,7 @@ public class LoginPage {
 
     @FindBy(xpath = "//button[@type='submit']")
     public WebElement loginButton;
+
+    @FindBy(xpath = "//div[@role='alert']")
+    public WebElement errorMessage_incorrectEmailPass;
 }
