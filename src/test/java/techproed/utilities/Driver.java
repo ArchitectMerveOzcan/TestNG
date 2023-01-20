@@ -1,11 +1,14 @@
 package techproed.utilities;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
 import java.time.Duration;
+
 public class Driver {
     //    Driver.getDriver(); -> driver
     private static WebDriver driver;
@@ -17,10 +20,12 @@ public class Driver {
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
+
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     driver=new FirefoxDriver();
                     break;
+
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
@@ -31,11 +36,13 @@ public class Driver {
                     driver=new EdgeDriver();
                     break;
             }
+
 //            NOTE: sel 4.5
 //            driver = WebDriverManager.chromedriver().create();
+
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
         driver.manage().window().maximize();
         return driver;
     }
@@ -48,4 +55,6 @@ public class Driver {
             driver=null;
         }
     }
+
+
 }
