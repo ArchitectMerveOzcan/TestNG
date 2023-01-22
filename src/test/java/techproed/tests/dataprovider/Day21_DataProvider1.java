@@ -1,6 +1,8 @@
 package techproed.tests.dataprovider;
+
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 public class Day21_DataProvider1 {
     /*
     What is data provider?
@@ -28,14 +30,16 @@ public class Day21_DataProvider1 {
         };
         return customerCredentials;
     }
+
     //    TEST METHOD 1
     @Test(dataProvider = "my_smoke_data")
     public void dataProviderTest1(String username,String password){
         System.out.println("USERNAME : "+username+" | PASSWORD : "+password);
     }
     //   TEST METHOD 2
-    @Test(dataProvider = "customerData")
+    @Test(dataProvider = "my_smoke_data")
     public void dataProviderTest2(String user,String pass){
         System.out.println(user+" | "+pass);
     }
+
 }

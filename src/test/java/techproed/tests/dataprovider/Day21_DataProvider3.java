@@ -1,4 +1,5 @@
 package techproed.tests.dataprovider;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -8,12 +9,14 @@ import techproed.utilities.ConfigReader;
 import techproed.utilities.Driver;
 import techproed.utilities.ExcelUtils;
 import techproed.utilities.ReusableMethods;
+
 public class Day21_DataProvider3 {
-    /*
-    In this method, we will get the data from EXCEL using DATA PROVIDER
-    The only difference between class 2 and class 3 is the place where we get teh data
-    In class 2, we received the data from the class itself. In this class, we get the data from excel
-     */
+/*
+In this method, we will get the data from EXCEL using DATA PROVIDER
+The only difference between class 2 and class 3 is the place where we get teh data
+In class 2, we received the data from the class itself. In this class, we get the data from excel
+ */
+
     HomePage homePage;
     LoginPage loginPage;
     @DataProvider
@@ -28,6 +31,7 @@ public class Day21_DataProvider3 {
 //        USE ONE OF THE EXCEL UTIL METHOD TO RECEIVE THE DATA FROM THE EXCEL
 
         Object [][] customerCredentials = excelUtils.getDataArrayWithoutFirstRow();
+
 //        Object [][] customerCredentials = {
 //                {"sam.walker@bluerentalcars.com","c!fas_art"},
 //                {"kate.brown@bluerentalcars.com","tad1$Fas"},
@@ -36,8 +40,10 @@ public class Day21_DataProvider3 {
 //        };
         return customerCredentials;
     }
+
     //    1. Create a login method
     public void login(){
+
         Driver.getDriver().get(ConfigReader.getProperty("app_home_url"));
         homePage = new HomePage();
         loginPage =new LoginPage();
@@ -61,6 +67,7 @@ public class Day21_DataProvider3 {
         }
         ReusableMethods.waitFor(1);
     }
+
     @Test(dataProvider = "customerData")
     public void customerLoginTest(String username, String password){
 //            Takes us to the login page
@@ -75,8 +82,14 @@ public class Day21_DataProvider3 {
 //            IF USER ID IS DISPLAYED THEN LOGIN IS SUCCESSFUL
         ReusableMethods.verifyElementDisplayed(homePage.userID);
     }
+
     @AfterMethod
     public void tearDown(){
         Driver.closeDriver();
     }
+
+
+
+
+
 }

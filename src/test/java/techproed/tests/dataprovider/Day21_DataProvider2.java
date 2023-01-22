@@ -1,4 +1,5 @@
 package techproed.tests.dataprovider;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -7,6 +8,7 @@ import techproed.pages.LoginPage;
 import techproed.utilities.ConfigReader;
 import techproed.utilities.Driver;
 import techproed.utilities.ReusableMethods;
+
 public class Day21_DataProvider2 {
     HomePage homePage;
     LoginPage loginPage;
@@ -21,8 +23,10 @@ public class Day21_DataProvider2 {
         };
         return customerCredentials;
     }
+
     //    1. Create a login method
     public void login(){
+
         Driver.getDriver().get(ConfigReader.getProperty("app_home_url"));
         homePage = new HomePage();
         loginPage =new LoginPage();
@@ -46,6 +50,7 @@ public class Day21_DataProvider2 {
         }
         ReusableMethods.waitFor(1);
     }
+
     @Test(dataProvider = "customerData")
     public void customerLoginTest(String username, String password){
 //            Takes us to the login page
@@ -60,8 +65,12 @@ public class Day21_DataProvider2 {
 //            IF USER ID IS DISPLAYED THEN LOGIN IS SUCCESSFUL
         ReusableMethods.verifyElementDisplayed(homePage.userID);
     }
+
     @AfterMethod
     public void tearDown(){
         Driver.closeDriver();
     }
+
+
+
 }
